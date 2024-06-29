@@ -20,7 +20,7 @@ app.use(passport.initialize());
 
 const localAuthMiddleware = passport.authenticate("local", { session: false });
 
-app.get("/", localAuthMiddleware, function (req, res) {
+app.get("/", function (req, res) {
   res.send("Welcome to Our hotel");
 });
 
@@ -29,7 +29,7 @@ const personRoutes = require("./routes/perosnRoutes");
 const menuItemsRoutes = require("./routes/menuItemsRoutes");
 
 // Use the routers
-app.use("/person", localAuthMiddleware, personRoutes);
+app.use("/person", personRoutes);
 app.use("/menu", menuItemsRoutes);
 
 const port = process.env.PORT || 3000;
